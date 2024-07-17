@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 
 const NumberPrinter: React.FC = () => {
-  const [maxNumber, setMaxNumber] = useState<number | undefined>(undefined);
   const [numbers, setNumbers] = useState<number[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value, 10);
-    setMaxNumber(value);
-    if (!isNaN(value)) {
-      setNumbers(Array.from({ length: value }, (_, i) => i + 1));
+    const value = e.target.value;
+
+    const sanitizedValue = value.replace(/\D/g, '');
+
+    e.target.value = sanitizedValue;
+
+    if (sanitizedValue !== '') {
+      const parsedValue = parseInt(sanitizedValue, 10);
+      setNumbers(Array.from({ length: parsedValue }, (_, i) => i + 1));
     } else {
       setNumbers([]);
     }
@@ -17,7 +21,13 @@ const NumberPrinter: React.FC = () => {
   return (
     <div>
       <label htmlFor="maxNumberInput">Max Number to Print</label>
-      <input id="maxNumberInput" type="number" onChange={handleChange} />
+      <input
+        id="maxNumberInput"
+        type="text"
+        onChange={handleChange}
+        onInput={handleChange} 
+        value={numbers.length > 0 ? numbers.length.toString() : ''} 
+      />
       <div className="output">
         The printed numbers: {numbers.join(', ')}
       </div>
