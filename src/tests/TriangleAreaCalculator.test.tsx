@@ -5,8 +5,8 @@ import TriangleAreaCalculator from '../components/TriangleAreaCalculator';
 test('prevents negative number inputs in height in business logic', () => {
   render(<TriangleAreaCalculator />);
   
-  const heightInput = screen.getByLabelText(/Height/i) as HTMLInputElement; // Type assertion as HTMLInputElement
-  const widthInput = screen.getByLabelText(/Width/i) as HTMLInputElement; // Type assertion as HTMLInputElement
+  const heightInput = screen.getByLabelText(/Height/i) as HTMLInputElement; 
+  const widthInput = screen.getByLabelText(/Width/i) as HTMLInputElement; 
   
   act(() => {
     fireEvent.change(heightInput, { target: { value: '-10' } });
@@ -20,8 +20,8 @@ test('prevents negative number inputs in height in business logic', () => {
 test('prevents non-numeric inputs in height in business logic', () => {
   render(<TriangleAreaCalculator />);
   
-  const heightInput = screen.getByLabelText(/Height/i) as HTMLInputElement; // Type assertion as HTMLInputElement
-  const widthInput = screen.getByLabelText(/Width/i) as HTMLInputElement; // Type assertion as HTMLInputElement
+  const heightInput = screen.getByLabelText(/Height/i) as HTMLInputElement; 
+  const widthInput = screen.getByLabelText(/Width/i) as HTMLInputElement; 
   
   act(() => {
     fireEvent.change(heightInput, { target: { value: 'abc' } });
@@ -35,8 +35,8 @@ test('prevents non-numeric inputs in height in business logic', () => {
 test('handles zero values gracefully in business logic', () => {
   render(<TriangleAreaCalculator />);
   
-  const heightInput = screen.getByLabelText(/Height/i) as HTMLInputElement; // Type assertion as HTMLInputElement
-  const widthInput = screen.getByLabelText(/Width/i); // No need to assert type, it's inferred
+  const heightInput = screen.getByLabelText(/Height/i) as HTMLInputElement; 
+  const widthInput = screen.getByLabelText(/Width/i); 
   
   fireEvent.change(heightInput, { target: { value: '0' } });
   fireEvent.change(widthInput, { target: { value: '5' } });
@@ -48,8 +48,8 @@ test('handles zero values gracefully in business logic', () => {
 test('handles decimal inputs correctly in business logic', () => {
   render(<TriangleAreaCalculator />);
   
-  const heightInput = screen.getByLabelText(/Height/i) as HTMLInputElement; // Type assertion as HTMLInputElement
-  const widthInput = screen.getByLabelText(/Width/i); // No need to assert type, it's inferred
+  const heightInput = screen.getByLabelText(/Height/i) as HTMLInputElement; 
+  const widthInput = screen.getByLabelText(/Width/i); 
   
   fireEvent.change(heightInput, { target: { value: '3.5' } });
   fireEvent.change(widthInput, { target: { value: '2' } });
